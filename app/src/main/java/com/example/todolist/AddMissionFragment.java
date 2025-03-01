@@ -121,9 +121,12 @@ public class AddMissionFragment extends Fragment {
 
         // יצירת אובייקט `Task`
         TaskItem newTask = new TaskItem(name, content, priority, deadlineDate, deadlineTime, hasReminder, reminderDateTime, reminderId);
+
+        AlarmHelper.setReminder(requireContext(), newTask);
         Log.i("AddMissionFragment","task saved");
         FShalper fShalper = new FShalper();
         fShalper.addTask("email",newTask);
+
         // כאן תוכל לשמור את המשימה ל-DB או להעביר אותה לרשימה
         Toast.makeText(getContext(), "משימה נוספה בהצלחה!", Toast.LENGTH_SHORT).show();
     }

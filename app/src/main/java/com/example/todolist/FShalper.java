@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,9 +25,12 @@ import java.util.concurrent.ExecutionException;
 public class FShalper {
     private static final String TAG = "FShalper";
     private final FirebaseFirestore db;
-
+    private FirebaseAuth firebaseAuth;
+    private String email;
     public FShalper() {
         this.db = FirebaseFirestore.getInstance();
+        this.firebaseAuth = FirebaseAuth.getInstance();
+        this.email = firebaseAuth.getCurrentUser().getEmail();
     }
 
     // 1. יצירת רמה חדשה עבור המשתמש
